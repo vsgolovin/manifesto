@@ -15,16 +15,16 @@ def main():
     if not os.path.exists(OUTPUT_PATH):
         os.makedirs(OUTPUT_PATH)
 
-    # manifestos are grouped by country
-    for country in os.listdir(INPUT_PATH):
-        cur_path = os.path.join(INPUT_PATH, country)
+    out_fname = os.path.join(OUTPUT_PATH, 'all_manifestos.csv')
+    with open(out_fname, 'w', encoding='utf-8') as outfile:
+        # header
+        columns = ('date', 'party', 'id_perm', 'rile',
+                   'markeco', 'welfare', 'intpeace', 'text')
+        outfile.write(','.join(columns) + '\n')
 
-        out_fname = os.path.join(OUTPUT_PATH, country + '.csv')
-        with open(out_fname, 'w', encoding='utf-8') as outfile:
-            # header
-            columns = ('date', 'party', 'id_perm', 'rile',
-                       'markeco', 'welfare', 'intpeace', 'text')
-            outfile.write(','.join(columns) + '\n')
+        # manifestos are grouped by country
+        for country in os.listdir(INPUT_PATH):
+            cur_path = os.path.join(INPUT_PATH, country)
 
             # iterate over documents
             for fname in os.listdir(cur_path):
