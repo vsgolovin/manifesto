@@ -16,7 +16,7 @@ def main():
     y_test = np.loadtxt(os.path.join(DATA_DIR, PREFIX + 'ytest.txt'),
                         dtype='uint8')
 
-    model = tree.DecisionTreeClassifier(min_samples_leaf=5, max_depth=7)
+    model = tree.DecisionTreeClassifier(min_samples_leaf=5, max_depth=5)
     model.fit(X_train, y_train)
     y_pred = model.predict(X_test)
     acc = (y_pred == y_test).sum() / len(y_test)

@@ -18,7 +18,7 @@ def main():
     out_fname = os.path.join(OUTPUT_PATH, 'all_manifestos.csv')
     with open(out_fname, 'w', encoding='utf-8') as outfile:
         # header
-        columns = ('date', 'party', 'id_perm', 'rile',
+        columns = ('date', 'party', 'id_perm', 'rile', 'planeco',
                    'markeco', 'welfare', 'intpeace', 'text')
         outfile.write(','.join(columns) + '\n')
 

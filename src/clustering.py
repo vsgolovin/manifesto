@@ -7,7 +7,7 @@ from sklearn.cluster import KMeans
 
 INPUT_DIR = os.path.join(os.getcwd(), 'data', 'interim')
 OUTPUT_DIR = os.path.join(os.getcwd(), 'data', 'processed')
-COLUMNS = ('rile', 'markeco', 'welfare', 'intpeace')
+COLUMNS = ('rile', 'planeco', 'markeco', 'welfare', 'intpeace')
 RESCALE = True
 N_CLUSTERS = 4
 
