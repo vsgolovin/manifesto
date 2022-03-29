@@ -76,6 +76,8 @@ def main():
 
     print('\nComplete')
 
+    print(list(zip(pred.cpu().numpy(), y_test.cpu().numpy())))
+
     # plot results
     epochs = np.arange(1, EPOCHS + 1)
     plt.figure()
@@ -83,12 +85,14 @@ def main():
     plt.plot(epochs, test_losses, label='test')
     plt.xlabel('Epoch')
     plt.ylabel('Loss')
+    plt.legend()
 
     plt.figure()
     plt.plot(epochs, train_acc, label='train')
     plt.plot(epochs, test_acc, label='test')
     plt.xlabel('Epoch')
     plt.ylabel('Accuracy')
+    plt.legend()
     plt.show()
 
 

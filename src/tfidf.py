@@ -7,7 +7,7 @@ from sklearn.model_selection import train_test_split
 
 INPUT_DIR = os.path.join(os.getcwd(), 'data', 'processed')
 OUTPUT_DIR = INPUT_DIR
-VOCAB_SIZE = 8192
+VOCAB_SIZE = 2048
 ENCODING = 'utf-8'
 
 
