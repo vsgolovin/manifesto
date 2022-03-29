@@ -2,6 +2,7 @@ import os
 import re
 from string import punctuation
 import pandas as pd
+from nltk.stem import SnowballStemmer
 
 
 INPUT_DIR = os.path.join(os.getcwd(), 'data', 'interim')
@@ -37,6 +38,9 @@ def process_text(s: str) -> str:
 
     # remove tabs and multiple spaces
     s = re.sub(r'\s+', ' ', s)  # done in stemmer
+
+    stemmer = SnowballStemmer('english', ignore_stopwords=False)
+    s = ' '.join(stemmer.stem(word) for word in re.split(r'\s+', s))
 
     return s
 

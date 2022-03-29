@@ -21,21 +21,20 @@ def main():
     # vectorize texts and split data
     vectorizer = TfidfVectorizer(encoding=ENCODING, max_features=VOCAB_SIZE)
     X = vectorizer.fit_transform(df_texts['text'])
-    y = np.array(df_clusters['cluster'])
+    y = np.array(df_clusters['cluster'], dtype='uint8')
     X_train, X_test, y_train, y_test = train_test_split(
-        X, y, shuffle=True, test_size=0.1, stratify=y)
-    X_train, X_val, y_train, y_val = train_test_split(
-        X_train, y_train, test_size=0.1, stratify=y_train)
+        X, y, shuffle=True, test_size=40, stratify=y)
 
     # export arrays
-    names = ('train', 'val', 'test')
-    for x, name in zip((X_train, X_val, X_test), names):
+    names = ('train', 'test')
+    for x, name in zip((X_train, X_test), names):
         np.savetxt(
             os.path.join(OUTPUT_DIR, f'tf-idf_X{name}.txt'),
             x.toarray()
         )
-    for y, name in zip((y_train, y_val, y_test), names):
-        np.savetxt(os.path.join(OUTPUT_DIR, f'tf-idf_y{name}.txt'), y)
+    for y, name in zip((y_train, y_test), names):
+        np.savetxt(os.path.join(OUTPUT_DIR, f'tf-idf_y{name}.txt'), y,
+                   fmt='%d')
 
 
 if __name__ == '__main__':
