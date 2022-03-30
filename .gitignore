@@ -1,5 +1,6 @@
 data/*
 !data/.keep
+.vector_cache
 
 
 # Generic Python .gitignore
