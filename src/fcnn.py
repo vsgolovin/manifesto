@@ -7,9 +7,9 @@ import matplotlib.pyplot as plt
 
 DATA_DIR = os.path.join(os.getcwd(), 'data', 'processed')
 PREFIX = 'tf-idf_'
-BATCH_SIZE = 64
+BATCH_SIZE = 50
 LEARNING_RATE = 2e-3
-EPOCHS = 1500
+EPOCHS = 600
 
 
 def main():
@@ -109,7 +109,7 @@ class NeuralNet(nn.Module):
             nn.Linear(shape_hidden[0], shape_hidden[1]),
             nn.ReLU(),
             nn.Linear(shape_hidden[1], num_classes),
-            nn.Softmax()
+            nn.LogSoftmax()
         )
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
@@ -122,7 +122,7 @@ class Perceptron(nn.Module):
         self.flatten = nn.Flatten()
         self.stack = nn.Sequential(
             nn.Linear(num_features, num_classes),
-            nn.Softmax()
+            nn.LogSoftmax()
         )
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
